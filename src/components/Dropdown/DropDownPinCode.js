@@ -23,7 +23,6 @@ const DropDownPinCode = ({
   upperText,
   setPinCodeAreaList,
 }) => {
-  console.log('myData', myData);
   const [search, setSearch] = useState('');
   const [clicked, setClicked] = useState(false);
   const [data, setData] = useState(myData);
@@ -41,10 +40,14 @@ const DropDownPinCode = ({
   };
 
   const onSelectPin = myPincode => {
+    console.log('myPincode', myPincode);
     const formData2 = {pincode: myPincode};
+    console.log('formData2', formData2);
     getPinCodeListAreaApi(formData2).then(res => {
       console.log('res', res);
-      setPinCodeAreaList(res?.result);
+      res?.result == 'No record found.'
+        ? setPinCodeAreaList()
+        : setPinCodeAreaList(res?.result);
     });
   };
 
@@ -71,6 +74,7 @@ const DropDownPinCode = ({
         }}
         onPress={() => {
           setClicked(!clicked);
+          setPinCodeAreaList();
         }}>
         {selectedData && (
           <MotiView

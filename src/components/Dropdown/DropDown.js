@@ -39,9 +39,6 @@ const DropDown = ({
     }
   };
 
-  console.log('data', data);
-  console.log('myData', myData);
-
   return (
     <View style={{flex: 1}}>
       <TouchableOpacity

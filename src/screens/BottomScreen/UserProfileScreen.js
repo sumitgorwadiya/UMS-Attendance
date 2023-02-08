@@ -95,7 +95,12 @@ const UserProfileScreen = () => {
               title={'Mobile No'}
               data={employeeData?.mobile_no}
             />
-            <ProfileDataCard title={'Address'} data={employeeData?.address} />
+            {/* <ProfileDataCard title={'Address'} data={employeeData?.address} /> */}
+            <ProfileDataCard
+              title={'Address'}
+              data={`${employeeData?.full_address}`}
+              otherTxtStyle={{textTransform: 'capitalize'}}
+            />
             {/* <ProfileDataCard
               title={'Pincode Area'}
               data={employeeData?.pincode_area}
@@ -117,7 +122,7 @@ const UserProfileScreen = () => {
               data={employeeData?.marital_status}
             />
 
-            <ProfileDataCard title={'Pan'} data={employeeData?.pan} />
+            <ProfileDataCard title={'PAN'} data={employeeData?.pan} />
             <ProfileDataCard title={'Aadhaar'} data={employeeData?.aadhaar} />
             <ProfileDataCard title={'IFSC'} data={employeeData?.ifsc} />
             <ProfileDataCard

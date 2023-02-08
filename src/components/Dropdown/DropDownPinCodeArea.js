@@ -20,6 +20,10 @@ const DropDownPinCodeArea = ({
   setSelectedData,
   selectedData,
   upperText,
+  setState,
+  state,
+  setDistrict,
+  district,
 }) => {
   const [search, setSearch] = useState('');
   const [selectedData2, setSelectedData2] = useState('');
@@ -39,6 +43,8 @@ const DropDownPinCodeArea = ({
       setData(myData);
     }
   };
+
+  console.log('myData', myData);
 
   useEffect(() => {
     setData(myData);
@@ -84,7 +90,7 @@ const DropDownPinCodeArea = ({
           ]}>
           {!selectedData
             ? dropPlaceHolder
-            : `${selectedData2.pincode_area}, ${selectedData2.district}, ${selectedData2.state}`}
+            : `${selectedData}, ${district}, ${state}`}
         </Text>
         {clicked ? (
           <Image
@@ -154,6 +160,8 @@ const DropDownPinCodeArea = ({
                   onPress={() => {
                     setSelectedData(item.pincode_area);
                     setSelectedData2(item);
+                    setDistrict(item.district);
+                    setState(item.state);
                     setClicked(!clicked);
                     onSearch('');
                     setSearch('');

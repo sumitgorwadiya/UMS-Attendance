@@ -38,6 +38,7 @@ import {Colors} from '../../constants/Colors';
 import {IMAGE_BASE_URL} from '../../apiConfig/EndPoint';
 import DateInput from '../../components/Inputs/DateInput';
 import ImageInput2 from '../../components/Inputs/ImageInput2';
+import {MotiView} from 'moti';
 
 const genderData = ['MALE', 'FEMALE', 'OTHER'];
 const maritalStatusData = ['MARRIED', 'UNMARRIED'];
@@ -80,6 +81,8 @@ const UpdateProfileScreen = () => {
   const [pinCodeAreaList, setPinCodeAreaList] = useState();
   const [maritalStatusList, setMaritalStatusList] = useState();
   const [genderList, setGenderList] = useState();
+  const [district, setDistrict] = useState();
+  const [state, setState] = useState();
   const [addressPinCodeObject, setAddressPinCodeObject] = useState();
 
   const isLogin = route?.params?.isLogin;
@@ -107,7 +110,14 @@ const UpdateProfileScreen = () => {
         setBirthDate(res?.birth_date);
         setMaritalStatus(res?.marital_status);
         setAddressPincode(res?.Pincode);
+        const formData2 = {pincode: res?.Pincode};
+        getPinCodeListAreaApi(formData2).then(res => {
+          console.log('res', res);
+          setPinCodeAreaList(res?.result);
+        });
         setAddressPincodeArea(res?.pincode_area);
+        setDistrict(res?.district);
+        setState(res?.state);
         setAddress(res?.address);
         setEmergencyMobileNo(res?.emergency_contact_no);
         setPanNumber(res?.pan);
@@ -291,7 +301,7 @@ const UpdateProfileScreen = () => {
     }
   };
 
-  console.log('getMobileNo', getMobileNo);
+  console.log('pinCodeAreaList', pinCodeAreaList);
 
   const renderHeader = () => {
     return (
@@ -364,6 +374,17 @@ const UpdateProfileScreen = () => {
             />
           ) : (
             <View style={[CmnStyles.loginInputBox, CmnStyles.updateProBox]}>
+              <MotiView
+                style={{
+                  position: 'absolute',
+                  top: -5,
+                  left: 10,
+                  backgroundColor: Colors.white,
+                  borderRadius: 4,
+                  paddingHorizontal: 3,
+                }}>
+                <Text style={TextStyles.Orange_9_400}>{'Mobile No'}</Text>
+              </MotiView>
               <Text style={[CmnStyles.proScreenTopPartText2]}>
                 {getMobileNo}
               </Text>
@@ -384,13 +405,18 @@ const UpdateProfileScreen = () => {
             selectedData={addressPincode}
             setSelectedData={setAddressPincode}
             upperText="Pincode"
+            setPinCodeAreaList={setPinCodeAreaList}
           />
           <DropDownPinCodeArea
             myData={pinCodeAreaList}
-            dropPlaceHolder={'Pincode Area'}
+            dropPlaceHolder={'Area'}
             selectedData={addressPincodeArea}
             setSelectedData={setAddressPincodeArea}
-            upperText="Pincode Area"
+            setDistrict={setDistrict}
+            district={district}
+            state={state}
+            setState={setState}
+            upperText="Area"
           />
           <LoginInput
             value={emergencyMobileNo}
@@ -514,10 +540,10 @@ const UpdateProfileScreen = () => {
           <LoginInput
             value={accountNumber}
             otherStyle={CmnStyles.updateProBox}
-            placeholder="A/C NO Number"
+            placeholder="Account Number"
             onChangeText={text => setAccountNumber(text)}
             otherTextStyle={TextStyles.black15_SemiBold}
-            upperText="A/C NO Number"
+            upperText="Account Number"
             numberOfLines={1}
           />
           <ImageInput2

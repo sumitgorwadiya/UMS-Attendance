@@ -53,9 +53,9 @@ const OtpScreen = () => {
     }
   };
 
-  useEffect(() => {
-    otpCode?.length == 6 && verifyOtp();
-  }, [otpCode]);
+  // useEffect(() => {
+  //   otpCode?.length == 6 && verifyOtp();
+  // }, [otpCode]);
 
   const verifyOtp = () => {
     // const data = {mobileNo: mobileNum, password: otpCode};

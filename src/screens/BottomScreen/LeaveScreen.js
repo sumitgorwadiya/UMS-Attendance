@@ -13,8 +13,8 @@ const LeaveScreen = () => {
     <SafeAreaView style={CmnStyles.screenBG2}>
       <View style={CmnStyles.screenBG2}>
         <MyHeader text={'Leave Screen'} />
-        {/* <CameraEyeBlink setUri={setUri} /> */}
         <Text>LeaveScreen</Text>
+        <CameraEyeBlink setUri={setUri} />
       </View>
     </SafeAreaView>
   );

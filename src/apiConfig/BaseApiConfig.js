@@ -23,12 +23,12 @@ import axiosInstance from './apiConfig';
 // };
 
 export const baseApiCall = config => {
+  console.log('consfig', config);
   return new Promise((resolve, reject) => {
     axiosInstance(config)
       .then(response => {
         if (response?.status === 200) {
           resolve(response?.data);
-          console.log('response', response?.data);
         }
       })
       .catch(e => {

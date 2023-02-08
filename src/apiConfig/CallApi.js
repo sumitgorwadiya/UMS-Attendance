@@ -55,10 +55,11 @@ export const getPinCodeListApi = () => {
   });
 };
 
-export const getPinCodeListAreaApi = () => {
+export const getPinCodeListAreaApi = data => {
   return baseApiCall({
     url: GET_PINCODE_AREA_LIST,
     method: 'post',
+    data,
   });
 };
 

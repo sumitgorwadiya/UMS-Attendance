@@ -24,7 +24,7 @@ const DateInput = ({value, otherStyle, upperText, setValue, text}) => {
         setDatePickerVisibility(isDatePickerVisible ? false : true);
       }}
       style={[CmnStyles.loginInputBox, otherStyle]}>
-      {newDate?.length > 0 && (
+      {value && (
         <MotiView
           style={{
             position: 'absolute',
